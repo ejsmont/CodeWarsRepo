@@ -14,4 +14,4 @@ __author__ = 'pejs and jejs'
 
 
 def solution(number):
-    pass
+    return 0

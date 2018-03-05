@@ -14,4 +14,17 @@ __author__ = 'pejs and jejs'
 
 
 def solution(number):
-    return 0
+    """
+    Finds the sum of all multiples of 3 or 5 below given number.
+    Example:
+        10 returns 23 (3, 5, 6 and 9 are multiples of 3 or 5)
+    :param number: an int number for which the sum is calculated
+    :return: integer sum of all 3 or 5 multiplies below a number
+    """
+    #TODO - refactor the code using list comprehension (one liner)
+
+    total = 0
+    for i in range(1, number):
+        if i % 3 == 0 or i % 5 == 0:
+            total += i
+    return total

@@ -21,4 +21,16 @@ def longest(s):
     :return: the longest substring of the input string in alphabetical order
     """
 
-    pass
+    # TODO - finish the solution. Initial idea is to compare every two characters. If next char is greater/equal to
+    # TODO - previous char, accumulate the result in current_alpha_str. If not, compare if current_alpha_str is longer
+    # TODO - than longest_alpha_str found so far. Return longest_alpha_str.
+
+    previous_char = ''
+    current_alpha_str = ''
+    longest_alpha_str = ''
+    for next_char in s:
+        if next_char >= previous_char:
+            pass
+        else:
+            pass
+    return longest_alpha_str

@@ -49,14 +49,16 @@ __author__ = 'pejs'
 
 def simple_assembler(program):
     """
+    Function responsible for parsing and executing input commands. Models simple assembler.
+
     Handled commands:
         mov x y - copies y (either a constant value or the content of a register) into register x
         inc x - increases the content of register x by one
         dec x - decreases the content of register x by one
         jnz x y - jumps to an instruction y steps away (positive means forward, negative means backward),
                 but only if x (a constant or a register) is not zero
-    :param program:
-    :return:
+    :param program: list containing all commands to be executed
+    :return: dictionary with the content of all registers
     """
     def mov(x, y, all_reg, step):
         if y.isalpha():

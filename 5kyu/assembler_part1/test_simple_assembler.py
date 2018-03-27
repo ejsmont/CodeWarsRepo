@@ -8,3 +8,17 @@ class TestSimpleAssembler(TestCase):
         self.assertEquals(simple_assembler(program), {'a': 1})
         program = ['mov a 1', 'mov b 1']
         self.assertEquals(simple_assembler(program), {'a': 1, 'b': 1})
+        code = '''\
+            mov c 12
+            mov b 0
+            mov a 200
+            dec a
+            inc b
+            jnz a -2
+            dec c
+            mov a b
+            jnz c -5
+            jnz 0 1
+            mov c a'''
+        program = code.splitlines()
+        self.assertEquals(simple_assembler(program),{'a': 409600, 'c': 409600, 'b': 409600})

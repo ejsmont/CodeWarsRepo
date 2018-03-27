@@ -80,7 +80,7 @@ def simple_assembler(program):
         return step
 
     def jnz(x, y, all_reg, step):
-        if all_reg[x] != 0:
+        if (not x.isalpha() and x != 0) or all_reg[x] != 0:
             step += int(y)
         else:
             step += 1

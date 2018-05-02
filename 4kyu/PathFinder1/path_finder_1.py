@@ -8,4 +8,18 @@ Empty positions are marked .. Walls are marked W. Start and exit positions are e
 
 
 def path_finder(maze):
+    maze_arr = maze_str_to_array(maze)
+    n = len(maze_arr)
+
     return None
+
+
+def maze_str_to_array(maze):
+    """
+    Function to convert string representation of a maze into multidimensional list. One (1) represents empty
+    field, zero (0) represents a wall (impenetrable field)
+    :param maze: string representation of a maze
+    :return: list representation of a maze.
+    """
+    return [[1 if char == '.' else 0 for char in row] for row in maze.split('\n')]
+

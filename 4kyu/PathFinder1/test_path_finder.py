@@ -1,5 +1,6 @@
 from unittest import TestCase
 from .path_finder_1 import path_finder
+from .path_finder_1 import maze_str_to_array
 from .path_finder_1 import SearchNode
 
 a = "\n".join([
@@ -40,6 +41,14 @@ class TestPathFinder(TestCase):
     #     self.assertEqual(path_finder(b), False)
     #     self.assertEqual(path_finder(c), True)
     #     self.assertEqual(path_finder(d), False)
+
+    def test_maze_str_to_array(self):
+        maze_arr = maze_str_to_array(a)
+        expected = [[1, 0, 1], [1, 0, 1], [1, 1, 1]]
+        self.assertListEqual(expected, maze_arr)
+        maze_arr = maze_str_to_array(b)
+        expected = [[1, 0, 1], [1, 0, 1], [0, 1, 1]]
+        self.assertListEqual(expected, maze_arr)
 
     def test_node_class(self):
         first = SearchNode(None, 0, 0)

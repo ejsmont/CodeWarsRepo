@@ -36,6 +36,14 @@ d = "\n".join([
   "....W."
 ])
 
+e = "\n".join([
+  ".....",
+  "..W..",
+  "..W..",
+  "..W..",
+  "....W"
+])
+
 
 class TestPathFinder(TestCase):
 
@@ -71,3 +79,4 @@ class TestPathFinder(TestCase):
         self.assertEqual(path_finder(b), False)
         self.assertEqual(path_finder(c), True)
         self.assertEqual(path_finder(d), False)
+        self.assertEqual(path_finder(e), False)

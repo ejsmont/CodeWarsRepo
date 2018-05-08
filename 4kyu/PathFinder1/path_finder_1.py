@@ -11,6 +11,16 @@ def path_finder(maze):
     maze_arr = maze_str_to_array(maze)
     n = len(maze_arr)
     start, goal = (0, 0), (n - 1, n - 1)
+    return bfs(maze_arr, start, goal)
+
+
+def bfs(maze_arr, start, goal):
+    """
+    Implementation of breadth first search algorithm for solving maze problem
+    :param start: starting node
+    :param goal: goal node
+    :return: True if goal can be reached
+    """
     from queue import Queue
     to_be_expanded = Queue()
     to_be_expanded.put(start)
@@ -23,7 +33,6 @@ def path_finder(maze):
         tree.add(node)
         get_node_neighbors(maze_arr, node, tree, to_be_expanded)
     return False
-
 
 def maze_str_to_array(maze):
     """

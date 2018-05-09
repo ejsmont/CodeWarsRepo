@@ -17,6 +17,7 @@ def path_finder(maze):
 def bfs(maze_arr, start, goal):
     """
     Implementation of breadth first search algorithm for solving maze problem
+    :param maze_arr: search space
     :param start: starting node
     :param goal: goal node
     :return: True if goal can be reached
@@ -33,6 +34,17 @@ def bfs(maze_arr, start, goal):
         tree.add(node)
         get_node_neighbors(maze_arr, node, tree, to_be_expanded)
     return False
+
+
+def manhattan_distance(cell, goal):
+    """
+    Computes manhattan distance from some cell to the goal.
+    :param cell: cell from where the distance is measured
+    :param goal: goal node
+    :return: absolute integer value of a manhattan distance
+    """
+    return abs(cell[0] - goal[0]) + abs(cell[1] - goal[1])
+
 
 def maze_str_to_array(maze):
     """

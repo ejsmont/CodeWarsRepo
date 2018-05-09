@@ -1,9 +1,7 @@
 from unittest import TestCase
 from queue import Queue
 
-from .path_finder_1 import maze_str_to_array
-from .path_finder_1 import get_node_neighbors
-from .path_finder_1 import path_finder
+from .path_finder_1 import *
 
 
 a = "\n".join([
@@ -73,6 +71,13 @@ class TestPathFinder(TestCase):
             child = to_be_expanded.get()
             self.assertNotEqual(parent, child)
             self.assertEqual(True, child in expected)
+
+    def test_manhattan_distance(self):
+        cell = (0, 1)
+        goal = (3, 3)
+        self.assertEqual(5, manhattan_distance(cell, goal))
+        cell = (3, 3)
+        self.assertEqual(0, manhattan_distance(cell, goal))
 
     def test_path_finder(self):
         self.assertEqual(path_finder(a), True)

@@ -101,7 +101,6 @@ class TestPathFinder(TestCase):
         cell = (3, 3)
         self.assertEqual(0, manhattan_distance(cell, goal))
 
-
     def test_euclidean_distance(self):
         from math import sqrt
         cell = (0, 1)
@@ -115,8 +114,8 @@ class TestPathFinder(TestCase):
         self.assertEqual(path_finder(b), False)
         self.assertEqual(path_finder(c), 10)
         self.assertEqual(path_finder(d), False)
-        # self.assertEqual(path_finder(e), False)
-        # self.assertEqual(path_finder(f), False)
-        # self.assertEqual(path_finder(g), True)
-        # self.assertEqual(path_finder(h), True)
+        self.assertEqual(path_finder(e), False)
+        self.assertEqual(path_finder(f), False)
+        self.assertEqual(path_finder(g), 198)
+        self.assertEqual(path_finder(h), 18)
 

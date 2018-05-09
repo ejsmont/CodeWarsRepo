@@ -36,6 +36,20 @@ def bfs(maze_arr, start, goal):
     return False
 
 
+def ai_star(maze_arr, start, goal):
+    """
+    Implementation of A* algorithm for solving maze problem
+    :param maze_arr: search space
+    :param start: starting node
+    :param goal: goal node
+    :return: True if goal can be reached
+    """
+    from heapq import heappush, heappop
+    heap = []
+    heappush(heap, 10)
+
+
+
 def manhattan_distance(cell, goal):
     """
     Computes manhattan distance from some cell to the goal.

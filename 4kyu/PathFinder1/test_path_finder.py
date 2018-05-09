@@ -42,6 +42,22 @@ e = "\n".join([
   "....W"
 ])
 
+f = "\n".join([
+    "..W...W.W",
+    "..WW..WWW",
+    ".....W...",
+    ".W..W....",
+    "W....WWWW",
+    ".......W.",
+    "..W......",
+    "WW.WW..WW",
+    ".....W..W"
+])
+
+g = "\n".join(["." * 100 for _ in range(100)])
+
+h = "\n".join(["." * 10 for _ in range(10)])
+
 
 class TestPathFinder(TestCase):
 
@@ -85,9 +101,22 @@ class TestPathFinder(TestCase):
         cell = (3, 3)
         self.assertEqual(0, manhattan_distance(cell, goal))
 
+
+    def test_euclidean_distance(self):
+        from math import sqrt
+        cell = (0, 1)
+        goal = (3, 3)
+        self.assertAlmostEqual(sqrt(13), euclidean_distance(cell, goal))
+        cell = (3, 3)
+        self.assertEqual(0, euclidean_distance(cell, goal))
+
     def test_path_finder(self):
-        self.assertEqual(path_finder(a), True)
+        self.assertEqual(path_finder(a), 4)
         self.assertEqual(path_finder(b), False)
-        self.assertEqual(path_finder(c), True)
+        self.assertEqual(path_finder(c), 10)
         self.assertEqual(path_finder(d), False)
-        self.assertEqual(path_finder(e), False)
+        # self.assertEqual(path_finder(e), False)
+        # self.assertEqual(path_finder(f), False)
+        # self.assertEqual(path_finder(g), True)
+        # self.assertEqual(path_finder(h), True)
+

@@ -11,7 +11,7 @@ def path_finder(maze):
     maze_arr = maze_str_to_array(maze)
     n = len(maze_arr)
     start, goal = (0, 0), (n - 1, n - 1)
-    return bfs(maze_arr, start, goal)
+    return ai_star(maze_arr, start, goal)
 
 
 def bfs(maze_arr, start, goal):
@@ -41,16 +41,28 @@ def bfs(maze_arr, start, goal):
 
 def ai_star(maze_arr, start, goal):
     """
-    Implementation of A* algorithm for solving maze problem
+    Implementation of A* algorithm for solving maze problem. Heap is used. The value passed to
+    a heap is a tuple containing priority (estimated cost) and cell coordinates.
     :param maze_arr: search space
     :param start: starting node
     :param goal: goal node
     :return: True if goal can be reached
     """
     from heapq import heappush, heappop
-    heap = []
-    heappush(heap, 10)
+    to_be_expanded = []
+    heappush(to_be_expanded, (manhattan_distance(start, goal), 0, 0, start))
+    tree = set()
 
+    while to_be_expanded:
+        _, cost, real_cost, node = heappop(to_be_expanded)
+        if node == goal:
+            return real_cost
+        tree.add(node)
+        neighbors = get_node_neighbors(maze_arr, node)
+        for neighbor in neighbors:
+            if neighbor not in tree:
+                heappush(to_be_expanded, (cost + manhattan_distance(neighbor, goal), cost + 0.99, real_cost + 1, neighbor))
+    return False
 
 
 def manhattan_distance(cell, goal):
@@ -61,6 +73,17 @@ def manhattan_distance(cell, goal):
     :return: absolute integer value of a manhattan distance
     """
     return abs(cell[0] - goal[0]) + abs(cell[1] - goal[1])
+
+
+def euclidean_distance(cell, goal):
+    """
+    Computes euclidean distance from some cell to the goal.
+    :param cell: cell from where the distance is measured
+    :param goal: goal node
+    :return: absolute float value of a euclidean distance
+    """
+    from math import sqrt
+    return sqrt((cell[0] - goal[0])**2 + (cell[1] - goal[1])**2)
 
 
 def maze_str_to_array(maze):

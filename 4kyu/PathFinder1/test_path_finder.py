@@ -58,7 +58,10 @@ class TestPathFinder(TestCase):
         parent = (0, 2)
         to_be_expanded = Queue()
         tree = {parent}
-        get_node_neighbors(maze_arr, parent, tree, to_be_expanded)
+        neighbors = get_node_neighbors(maze_arr, parent)
+        for neighbor in neighbors:
+            if neighbor not in tree:
+                to_be_expanded.put(neighbor)
         expected = [(0, 1), (1, 2)]
         while not to_be_expanded.empty():
             child = to_be_expanded.get()
@@ -66,7 +69,10 @@ class TestPathFinder(TestCase):
             self.assertEqual(True, child in expected)
         next_parent = (1, 2)
         expected = [(2, 2)]
-        get_node_neighbors(maze_arr, next_parent, tree, to_be_expanded)
+        neighbors = get_node_neighbors(maze_arr, parent)
+        for neighbor in neighbors:
+            if neighbor not in tree:
+                to_be_expanded.put(neighbor)
         while not to_be_expanded.empty():
             child = to_be_expanded.get()
             self.assertNotEqual(parent, child)

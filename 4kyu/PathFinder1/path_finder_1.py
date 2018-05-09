@@ -32,7 +32,10 @@ def bfs(maze_arr, start, goal):
         if node == goal:
             return True
         tree.add(node)
-        get_node_neighbors(maze_arr, node, tree, to_be_expanded)
+        neighbors = get_node_neighbors(maze_arr, node)
+        for neighbor in neighbors:
+            if neighbor not in tree:
+                to_be_expanded.put(neighbor)
     return False
 
 
@@ -70,20 +73,19 @@ def maze_str_to_array(maze):
     return [[1 if char == '.' else 0 for char in row] for row in maze.split('\n')]
 
 
-def get_node_neighbors(maze_arr, parent_node, tree, to_be_expanded):
+def get_node_neighbors(maze_arr, parent_node):
     """
-    Computes a list of SearchNodes with all valid neighbors (except already seen nodes, walls and cells out of board)
+    Computes a list of SearchNodes with all valid neighbors (except walls and cells out of board)
     :param maze_arr: a multidim list containing the maze
     :param parent_node: a node for with neighbors are calculated
-    :param tree: set of already expanded nodes
-    :param to_be_expanded: a queue to which next nodes should be enqueued
+    :return a list containing all possible neighbors
     """
     n = len(maze_arr)
+    neighbors = []
     x_0, y_0 = parent_node
     for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
         x_1 = x_0 + dx
         y_1 = y_0 + dy
-        a = 0 <= x_1 < n and 0 <= y_1 < n and maze_arr[y_1][x_1] == 1
-        b = (x_1, y_1) not in tree
-        if a and b:
-            to_be_expanded.put((x_1, y_1))
+        if 0 <= x_1 < n and 0 <= y_1 < n and maze_arr[y_1][x_1] == 1:
+            neighbors.append((x_1, y_1))
+    return neighbors
